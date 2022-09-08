@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 //
 // Created by archdrema on 7/24/22.
 //
@@ -5,6 +8,7 @@
 #include <ctype.h>
 #include "number.h"
 #include "utils.h"
+#define LF '\n'
 
 impl_long_num(MANTISSA_L, mantissa_t)
 
@@ -86,7 +90,13 @@ err_t input_num(FILE *f, real_t *num)
     num->exponent.sign = PLUS;
     while (state != END && res == OK)
     {
-        int ch  = getc(f);
+        int ch = getc(f);
+        if (ch == LF)
+        {
+            state = END;
+            continue;
+        }
+
         if (isspace(ch))
         {
             if (state == BEFORE_POINT || state == AFTER_POINT )
@@ -328,7 +338,7 @@ err_t input_num(FILE *f, real_t *num)
 
             exponent_t new_exp;
 
-            exponent_t adding = {PLUS, {[EXPONENT_L - 1] = exp_add}};
+            exponent_t adding = {PLUS, {[0] = 0, [EXPONENT_L - 1] = exp_add}};
             res = add(exponent_t, num->exponent, adding, &new_exp);
             copy(exponent_t, &new_exp, &num->exponent);
         }

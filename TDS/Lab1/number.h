@@ -6,7 +6,7 @@
 #define LAB1_NUMBER_H
 
 #include "sign.h"
-#include "stdbool.h"
+#include <stdbool.h>
 
 #define MANTISSA_L 30
 #define EXPONENT_L 5
