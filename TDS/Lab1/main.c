@@ -52,7 +52,9 @@ int main() {
 
     if (errcode != OK)
     {
-        printf("Error #%d", errcode);
+        printf("Error: ");
+        print_err_t(errcode);
+        puts("");
     }
 
     return errcode;

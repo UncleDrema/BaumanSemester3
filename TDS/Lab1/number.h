@@ -9,9 +9,9 @@
 #include <stdbool.h>
 
 #define MANTISSA_L 30
-#define MANTISSA_LARGE_L 60
+#define MANTISSA_LARGE_L (MANTISSA_L * 2)
 #define EXPONENT_L 5
-#define EXPONENT_LARGE_L 6
+#define EXPONENT_LARGE_L (EXPONENT_L + 1)
 #define ERR_IO -1
 #define ZERO_NUMBER {{0, {[0] = 0}}, {0, {[0] = 0}}}
 
@@ -159,6 +159,8 @@ typedef enum {
     WRONG_AFTER_E_SIGN = 10,
     WRONG_EXPONENT = 11,
     ZERO_DIVISION = 12,
+    OVERFLOW_DIVISION = 13,
+    WRONG_INTEGER = 14,
     OTHER
 } err_t;
 
@@ -200,5 +202,7 @@ err_t input_real_num(FILE *f, real_input_t *num);
 err_t input_integer_num(FILE *f, real_input_t *num);
 
 err_t inner_to_real(real_inner_t *inner, real_t *result);
+
+void print_err_t(err_t err);
 
 #endif //LAB1_NUMBER_H

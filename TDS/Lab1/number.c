@@ -21,7 +21,7 @@ impl_long_num(MANTISSA_LARGE_L, mantissa_large_t)
 void print_real(FILE *f, real_t *num)
 {
     print_sign(f, num->mantissa.sign);
-    fprintf(f, " 0.");
+    fprintf(f, "0.");
 
     int start = firstNotEqualFromEnd(num->mantissa.value, MANTISSA_L, 0);
 
@@ -39,7 +39,6 @@ void print_real(FILE *f, real_t *num)
 
     fprintf(f, " E ");
     print_sign(f, num->exponent.sign);
-    putc(' ', f);
 
     int firstNotZero = firstNotEqual(num->exponent.value, EXPONENT_L, 0);
 
@@ -145,7 +144,7 @@ static err_t normalize(real_input_t *num)
         for (int i = 0; i < notZero; ++i)
         {
             cycleShiftLeft(num->mantissa.value, MANTISSA_L);
-            sub_exp.value[EXPONENT_LARGE_L - 1]++;
+            sub_exp.value[EXPONENT_LARGE_L - 1]--;
         }
     }
 
@@ -252,7 +251,7 @@ err_t input_integer_num(FILE *f, real_input_t *num)
                 }
                 else
                 {
-                    res = WRONG_AFTER_M_SIGN;
+                    res = WRONG_INTEGER;
                 }
             }
             else if (state == BEFORE_POINT)
@@ -277,7 +276,7 @@ err_t input_integer_num(FILE *f, real_input_t *num)
                 }
                 else
                 {
-                    res = WRONG_BEFORE_POINT;
+                    res = WRONG_INTEGER;
                 }
             }
             else
@@ -606,26 +605,27 @@ err_t divide_inner_t(real_inner_t *numerator, real_inner_t *denominator, real_in
         int cmp = abs_compare_mantissa_large_t(&numerator->mantissa, &denominator->mantissa);
         sign_t mant_sign = numerator->mantissa.sign * denominator->mantissa.sign;
         exponent_large_t diff = {PLUS, {[0] = 0}};
+
         sub_exponent_large_t(numerator->exponent, denominator->exponent, &diff);
+        //cppcheck-suppress legacyUninitvar
+        exponent_large_t one = {PLUS, {[EXPONENT_LARGE_L - 1] = 1}};
 
         if (cmp == 0)
         {
             *result = ONE_INNER;
+            add_exponent_large_t(diff, one, &diff);
             result->exponent = diff;
             result->mantissa.sign = mant_sign;
         }
         else
         {
-            //cppcheck-suppress legacyUninitvar
-            exponent_large_t one = {PLUS, {[EXPONENT_LARGE_L - 1] = 1}};
-
-
             real_inner_t temp_a = ZERO_NUMBER;
             real_inner_t temp_b = ZERO_NUMBER;
             real_inner_t temp = ZERO_NUMBER;
             copy_mantissa_large_t(&ZERO_INNER.mantissa, &result->mantissa, true);
             copy_exponent_large_t(&ZERO_INNER.exponent, &result->exponent, true);
-            abs_add_exponent_large_t(diff, one, &result->exponent);
+            result->exponent = diff;
+
             result->mantissa.sign = mant_sign;
 
             copy_mantissa_large_t(&numerator->mantissa, &temp_a.mantissa, true);
@@ -651,6 +651,11 @@ err_t divide_inner_t(real_inner_t *numerator, real_inner_t *denominator, real_in
                 res_index++;
                 shiftRight(temp_b.mantissa.value, MANTISSA_LARGE_L);
             }
+
+            if (result->mantissa.value[0] == 0)
+            {
+                shiftLeft(result->mantissa.value, MANTISSA_LARGE_L);
+            }
         }
     }
 
@@ -663,7 +668,7 @@ err_t inner_to_real(real_inner_t *inner, real_t *result)
     err_t rc = OK;
     if (abs_compare_exponent_large_t(&inner->exponent, &maxExponent) > 0)
     {
-        rc = OVERFLOW;
+        rc = OVERFLOW_DIVISION;
     }
     else
     {
@@ -686,4 +691,52 @@ err_t inner_to_real(real_inner_t *inner, real_t *result)
     }
 
     return rc;
+}
+
+void print_err_t(err_t err)
+{
+    switch (err) {
+        case OK:
+            printf("Ok");
+            break;
+        case OVERFLOW:
+            printf("overlow of format in input!");
+            break;
+        case EMPTY_INPUT:
+            printf("empty input!");
+            break;
+        case END_TOO_SOON:
+            printf("parsing ended too soon!");
+            break;
+        case WRONG_START:
+            printf("parsing error!");
+            break;
+        case WRONG_AFTER_M_SIGN:
+        case WRONG_BEFORE_POINT:
+            printf("wrong symbol before decimal point");
+            break;
+        case WRONG_AFTER_POINT:
+            printf("wrong symbol after decimal point");
+            break;
+        case WRONG_AFTER_MNT_READY:
+            printf("wrong symbol after mantissa!");
+            break;
+        case WRONG_AFTER_EXP_CHAR:
+        case WRONG_AFTER_E_SIGN:
+        case WRONG_EXPONENT:
+            printf("exponent parse error!");
+            break;
+        case ZERO_DIVISION:
+            printf("zero divizion!");
+            break;
+        case OVERFLOW_DIVISION:
+            printf("division leads to overflow!");
+            break;
+        case WRONG_INTEGER:
+            printf("integer number parsing error");
+            break;
+        default:
+            printf("unknown error");
+            break;
+    }
 }
