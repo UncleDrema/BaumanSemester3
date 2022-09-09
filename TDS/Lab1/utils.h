@@ -8,7 +8,7 @@
 
 #define NOT_FOUND -1
 
-#define to_char(digit) ((char) (digit + '0'))
+#define to_char(digit) ((char) ((digit) + '0'))
 #define to_int(digit) ((int) digit - '0')
 
 int firstNotEqual(const int *arr, int len, int val);
@@ -16,6 +16,10 @@ int firstNotEqual(const int *arr, int len, int val);
 int firstNotEqualFromEnd(const int *arr, int len, int val);
 
 bool all_equal(const int* arr, int len, int value);
+
+void shiftLeft(int *arr, int len);
+
+void shiftRight(int *arr, int len);
 
 void cycleShiftLeft(int *arr, int len);
 

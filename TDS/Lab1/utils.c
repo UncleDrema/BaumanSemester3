@@ -26,6 +26,26 @@ int firstNotEqualFromEnd(const int *arr, int len, int val)
     return i;
 }
 
+void shiftLeft(int *arr, int len)
+{
+    for (int i = 0; i < len - 1; i++)
+    {
+        arr[i] = arr[i + 1];
+    }
+
+    arr[len - 1] = 0;
+}
+
+void shiftRight(int *arr, int len)
+{
+    for (int i = len - 1; i > 0; i--)
+    {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[0] = 0;
+}
+
 void cycleShiftLeft(int *arr, int len)
 {
     int fst = arr[0];

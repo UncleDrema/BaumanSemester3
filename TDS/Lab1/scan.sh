@@ -1,5 +1,4 @@
 echo "Clang scan-build:"
-scan-build clang *.c | sed '/^scan-build/d'
+scan-build clang *.c -o app.exe | sed '/^scan-build/d'
 echo "Cppcheck:"
-cppcheck . | grep error
-rm a.out
+cppcheck . --inline-suppr --suppress=toomanyconfigs
