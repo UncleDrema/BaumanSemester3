@@ -15,7 +15,7 @@ exit_message(){
 ./"$check" || exit_message "---Program checkup failed!---"
 
 # Компилируем программу
-./"$build_r" || exit_message "---Build failed!---"
+./"$build_r" "-DDEBUG" || exit_message "---Build failed!---"
 
 # Запускаем функциональные тесты
 cd "$scripts_path" || exit_message "---Cannot find path to scripts!---"

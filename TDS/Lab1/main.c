@@ -9,10 +9,18 @@ int main() {
     real_input_t in_integer = ZERO_NUMBER;
     real_input_t in_real = ZERO_NUMBER;
 
+#ifndef DEBUG
+    printf("Please, input integer number with <= 30 digits\n");
+    printf("±------------------------------\n");
+#endif
     err_t errcode = input_integer_num(stdin, &in_integer);
 
     if (errcode == OK)
     {
+#ifndef DEBUG
+        printf("Please, input real number in format: ±m.n E ±K, where m+n total length <= 30 digits and K length <= 5 digits\n");
+        printf("±----.----.----.----.----.----.----.-- E ±-----\n");
+#endif
         errcode = input_real_num(stdin, &in_real);
 
         if (errcode == OK)
@@ -23,20 +31,12 @@ int main() {
             input_to_inner(&in_integer, &inner_integer);
             input_to_inner(&in_real, &inner_real);
 
-#ifdef DEBUG
-            printf("Got numbers:\n");
-            print_real_inner(stdout, &inner_integer);
-            printf("\nAnd\n");
-            print_real_inner(stdout, &inner_real);
-            printf("\n");
-#endif
-
             real_inner_t delim_result = ZERO_NUMBER;
             errcode = divide_inner_t(&inner_integer, &inner_real, &delim_result);
             if (errcode == OK)
             {
-#ifdef DEBUG
-                printf("Result:\n");
+#ifndef DEBUG
+                printf("Division result:\n");
 #endif
                 real_t finalResult;
                 errcode = inner_to_real(&delim_result, &finalResult);

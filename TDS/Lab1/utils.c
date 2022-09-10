@@ -5,7 +5,6 @@
 // Created by archdrema on 7/24/22.
 //
 
-#include <stdio.h>
 #include "utils.h"
 
 int firstNotEqual(const int *arr, int len, int val)

@@ -656,6 +656,10 @@ err_t divide_inner_t(real_inner_t *numerator, real_inner_t *denominator, real_in
             {
                 shiftLeft(result->mantissa.value, MANTISSA_LARGE_L);
             }
+            else
+            {
+                add_exponent_large_t(result->exponent, one, &result->exponent);
+            }
         }
     }
 

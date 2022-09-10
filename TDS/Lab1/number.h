@@ -29,7 +29,7 @@ void abs_add_##name(name a, name b, name *res);                                 
 err_t add_##name(name a, name b, name *res);                                            \
 err_t sub_##name(name a, name b, name *res);                                            \
 void copy_##name(const name *from, name* to, bool copySign);                            \
-void shift_to_right_##name(name *a);                                                     \
+void shift_to_right_##name(name *a);                                                    \
 void shift_to_left_##name(name *a);
 
 #define impl_long_num(len, name) \
