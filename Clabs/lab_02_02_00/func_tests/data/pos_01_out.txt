@@ -1,0 +1,2 @@
+Please, input n: Please, input array elements: 4 5
+

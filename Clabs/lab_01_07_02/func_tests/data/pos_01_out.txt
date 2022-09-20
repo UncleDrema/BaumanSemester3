@@ -1,0 +1,5 @@
+Input X and Eps: s(x): 0.775117
+f(x): 0.775397
+absDelta: 0.000281
+relDelta: 0.000362
+

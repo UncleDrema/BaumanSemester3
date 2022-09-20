@@ -1,0 +1,1 @@
+./func_tests/data/neg_06_src.txt title

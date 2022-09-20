@@ -1,0 +1,2 @@
+Please enter points A, B, C, P: Point is outside of triangle: 2
+

@@ -1,0 +1,4 @@
+Input rows and columns: Input matrix elements: Input your digit: Digit must be from zero to nine!
+
+
+

@@ -1,0 +1,5 @@
+Input rows and columns: Input matrix elements: Input your digit: 
+12 21
+100 100
+3 7
+5 8

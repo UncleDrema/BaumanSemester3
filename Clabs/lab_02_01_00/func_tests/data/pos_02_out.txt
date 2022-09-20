@@ -1,0 +1,1 @@
+Please, input n: Please, input array elements: Sum of even elements: 2

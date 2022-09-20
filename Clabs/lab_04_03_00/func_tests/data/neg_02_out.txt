@@ -1,0 +1,2 @@
+Error, no words in string!
+

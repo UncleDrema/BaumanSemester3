@@ -1,0 +1,2 @@
+Please enter points A, B, C, P: Points A, B, C doesn't represent a triangle!
+

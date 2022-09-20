@@ -1,0 +1,2 @@
+Invalid input, N has to be an integer!
+

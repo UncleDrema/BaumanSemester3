@@ -1,0 +1,2 @@
+Input A and N: Error: N must be more than -1!
+

@@ -1,0 +1,9 @@
+*.exe
+*.out
+*.o
+*.pch
+*.gch
+sample/
+.idea/
+cmake-build-debug/
+.PVS-Studio/

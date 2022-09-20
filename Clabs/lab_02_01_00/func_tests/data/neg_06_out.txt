@@ -1,0 +1,3 @@
+Please, input n: Please, input array elements: Error, no even elements in array!
+
+

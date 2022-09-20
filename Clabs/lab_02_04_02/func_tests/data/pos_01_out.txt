@@ -1,0 +1,2 @@
+Input array: 3 3 3 3 3
+

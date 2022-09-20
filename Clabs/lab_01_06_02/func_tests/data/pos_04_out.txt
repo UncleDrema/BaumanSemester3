@@ -1,0 +1,2 @@
+Please enter points A, B, C, P: Point is on the side of triangle: 1
+

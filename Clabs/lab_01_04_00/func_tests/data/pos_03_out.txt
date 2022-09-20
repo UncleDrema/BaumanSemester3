@@ -1,0 +1,2 @@
+Input amount of money: Bottles you can buy: 1
+

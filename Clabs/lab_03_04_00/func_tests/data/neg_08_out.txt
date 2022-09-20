@@ -1,0 +1,1 @@
+Input rows and columns: No odd numbers under main diagonal!

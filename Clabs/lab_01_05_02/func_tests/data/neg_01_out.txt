@@ -1,0 +1,2 @@
+Input N: N cannot be lower than zero!
+

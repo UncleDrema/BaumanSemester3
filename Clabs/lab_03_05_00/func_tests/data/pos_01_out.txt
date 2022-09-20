@@ -1,0 +1,5 @@
+Input rows and columns: Input matrix elements: 
+Resulting matrix:
+1 7 5
+4 3 6
+2 8 9

@@ -1,0 +1,2 @@
+Input rows and columns: Input matrix elements: 
+Min odd number under main diag: 7

@@ -1,0 +1,2 @@
+Input A and N: Error: PLease input unsigned value and int value
+

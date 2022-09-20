@@ -1,0 +1,2 @@
+Please, input n: Please, input array elements: Error, element must be an integer!
+

@@ -1,0 +1,2 @@
+Input array: Error, array can not be empty!
+

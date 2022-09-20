@@ -1,0 +1,1 @@
+fb ../data/empty.txt ../data/empty_dst.txt "substr"

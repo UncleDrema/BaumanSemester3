@@ -1,0 +1,2 @@
+Please enter points A, B, C, P: Invalid input!
+

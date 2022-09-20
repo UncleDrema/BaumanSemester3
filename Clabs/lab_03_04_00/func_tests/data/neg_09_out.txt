@@ -1,0 +1,2 @@
+Input rows and columns: Input matrix elements:
+No odd numbers under main diagonal!
