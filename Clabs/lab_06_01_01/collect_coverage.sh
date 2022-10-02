@@ -2,8 +2,8 @@
 
 test_script_dir="func_tests/scripts/"
 test_script_name="func_tests.sh"
-gcno_file="app-main.gcno"
-gcda_file="app-main.gcda"
+gcno_file="*main.gcno"
+gcda_file="*main.gcda"
 app_file="app.exe"
 
 if [ ! -f $gcno_file ] || [ ! -f $app_file ]; then

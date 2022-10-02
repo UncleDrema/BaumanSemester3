@@ -6,7 +6,7 @@
 #define __ERR_IO_H
 
 #include "err.h"
-#include "stdio.h"
+#include <stdio.h>
 
 /**
  * Открывает файл (в случае неудачи кидает ошибку OPEN_ERR)

@@ -1,0 +1,1 @@
+func_tests/data/no_neg.txt func_tests/data/pos_04_fout.txt f

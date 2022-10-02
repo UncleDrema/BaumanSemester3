@@ -68,14 +68,14 @@ FUNC(field_type_t, err_get_field_type, char *str);
  * @param f поток вывода
  * @param film выводимая информация о фильме
  */
-void print_film_t(FILE *f, film_t *film);
+void print_film(FILE *f, film_t *film);
 
 /**
  * Вводит информацию о фильме (может кидать ошибки INPUT_END/FILM_WRONG_FORMAT)
  * @param f поток ввода
  * @param film переменная, в которую происходит запись
  */
-FUNC(void, err_read_film_t, FILE *f, film_t *film);
+FUNC(void, err_read_film, FILE *f, film_t *film);
 
 /**
  * Выводит информацию о массиве фильмов
@@ -83,7 +83,7 @@ FUNC(void, err_read_film_t, FILE *f, film_t *film);
  * @param arr массив фильмов
  * @param len длина массива
  */
-void print_film_t_arr(FILE *f, film_t *arr, int len);
+void print_film_arr(FILE *f, film_t *arr, int len);
 
 /**
  * Вводит информацию о нескольких фильмах из файла в массив, сортируя при вводе (может кидать ошибки INPUT_END/TOO_MUCH_ENTRIES/FILM_WRONG_FORMAT)
@@ -93,13 +93,13 @@ void print_film_t_arr(FILE *f, film_t *arr, int len);
  * @param field_type тип поля, по которому сортируется массив
  * @return количество введённых записей с информацией о фильмах
  */
-FUNC(int, err_read_film_t_arr_sorted, FILE *f, film_t *arr, int maxLen, int (*comparator)(film_t *, film_t *));
+FUNC(int, err_read_film_arr_sorted, FILE *f, film_t *arr, int maxLen, int (*comparator)(film_t *, film_t *));
 
-int compare_film_t_title(film_t *a, film_t *b);
+int compare_film_title(film_t *a, film_t *b);
 
-int compare_film_t_name(film_t *a, film_t *b);
+int compare_film_name(film_t *a, film_t *b);
 
-int compare_film_t_year(film_t *a, film_t *b);
+int compare_film_year(film_t *a, film_t *b);
 
 int compare_film_query_title(film_t *a, film_query_t *b);
 

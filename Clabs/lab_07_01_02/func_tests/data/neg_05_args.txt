@@ -1,0 +1,1 @@
+func_tests/data/simple.txt func_tests/data/neg_fout.txt f oooh

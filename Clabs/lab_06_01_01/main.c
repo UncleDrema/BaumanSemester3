@@ -36,13 +36,13 @@ MAIN_ARGS(int argc, char *argv[])
     switch (field_type)
     {
         case TITLE:
-            input_comparator = compare_film_t_title;
+            input_comparator = compare_film_title;
             break;
         case NAME:
-            input_comparator = compare_film_t_name;
+            input_comparator = compare_film_name;
             break;
         case YEAR:
-            input_comparator = compare_film_t_year;
+            input_comparator = compare_film_year;
             break;
     }
 
@@ -51,12 +51,12 @@ MAIN_ARGS(int argc, char *argv[])
     FILE *f = CALL(err_fopen, file_name, "r");
     RETHROWN;
 
-    int len = CALL(err_read_film_t_arr_sorted, f, films, MAX_FILMS, input_comparator);
+    int len = CALL(err_read_film_arr_sorted, f, films, MAX_FILMS, input_comparator);
     RETHROWN;
 
     if (argc == 3)
     {
-        print_film_t_arr(stdout, films, len);
+        print_film_arr(stdout, films, len);
     }
     else
     {
@@ -89,7 +89,7 @@ MAIN_ARGS(int argc, char *argv[])
         )
         RETHROWN;
 
-        print_film_t(stdout, found);
+        print_film(stdout, found);
     }
 
     CALL(err_fclose, f);

@@ -17,7 +17,7 @@
 /**
  * Кидает ошибку и производит выход из функции, возвращая переданные аргменты
  */
-#define THROW(err, ...) *__STATE_NAME = err; return __VA_ARGS__
+#define THROW(err, elseRet) *__STATE_NAME = err; return elseRet
 /**
  * Ловит заданную ошибку и выполняет действия в блоке
  */
@@ -75,7 +75,7 @@ FUNC(void, mainFunc, __VA_ARGS__)
  * Объявление функции main без аргументов
  */
 #define MAIN_NOARGS FUNC_NOARGS(void, mainFunc); \
-int main()                                      \
+int main(void)                                  \
 {                                               \
     err_t __STATE_NAME = OK;                    \
     mainFunc(&__STATE_NAME);                    \

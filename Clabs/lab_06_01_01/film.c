@@ -32,14 +32,14 @@ FUNC(field_type_t, err_get_field_type, char *str)
     return res;
 }
 
-void print_film_t(FILE *f, film_t *film)
+void print_film(FILE *f, film_t *film)
 {
     fprintf(f, "%s\n", film->title);
     fprintf(f, "%s\n", film->name);
     fprintf(f, "%d\n", film->year);
 }
 
-FUNC(void, err_read_film_t, FILE *f, film_t *film)
+FUNC(void, err_read_film, FILE *f, film_t *film)
 {
     if (fgets(film->title, FILM_TITLE_LEN, f) == NULL)
     {
@@ -104,11 +104,11 @@ FUNC(void, err_read_film_t, FILE *f, film_t *film)
     skip_to_nl(f);
 }
 
-void print_film_t_arr(FILE *f, film_t *arr, int len)
+void print_film_arr(FILE *f, film_t *arr, int len)
 {
     for (int i = 0; i < len; i++)
     {
-        print_film_t(f, arr + i);
+        print_film(f, arr + i);
     }
 }
 
@@ -126,14 +126,23 @@ static int find_insert_position(film_t *film, film_t *arr, int len, int (*compar
     return i;
 }
 
-FUNC(int, err_read_film_t_arr_sorted, FILE *f, film_t *arr, int max_len, int (*comparator)(film_t *, film_t *))
+static void insert_at_position(const film_t *film, film_t *arr, int insert_pos, int len)
+{
+    for (int i = len; i > insert_pos; i--)
+    {
+        arr[i] = arr[i - 1];
+    }
+    arr[insert_pos] = *film;
+}
+
+FUNC(int, err_read_film_arr_sorted, FILE *f, film_t *arr, int max_len, int (*comparator)(film_t *, film_t *))
 {
     int len;
     film_t temp;
 
     for (len = 0; len <= max_len; len++)
     {
-        CALL(err_read_film_t, f, &temp);
+        CALL(err_read_film, f, &temp);
         RETHROW_ONLY(FILM_WRONG_FORMAT, 0);
         CATCH_ONLY(INPUT_END,
             IGNORE;
@@ -146,11 +155,7 @@ FUNC(int, err_read_film_t_arr_sorted, FILE *f, film_t *arr, int max_len, int (*c
         }
 
         int insert_pos = find_insert_position(&temp, arr, len, comparator);
-        for (int i = len; i > insert_pos; i--)
-        {
-            arr[i] = arr[i - 1];
-        }
-        arr[insert_pos] = temp;
+        insert_at_position(&temp, arr, insert_pos, len);
     }
 
     if (len == 0)
@@ -161,17 +166,17 @@ FUNC(int, err_read_film_t_arr_sorted, FILE *f, film_t *arr, int max_len, int (*c
     return len;
 }
 
-int compare_film_t_title(film_t *a, film_t *b)
+int compare_film_title(film_t *a, film_t *b)
 {
     return strcmp(a->title, b->title);
 }
 
-int compare_film_t_name(film_t *a, film_t *b)
+int compare_film_name(film_t *a, film_t *b)
 {
     return strcmp(a->name, b->name);
 }
 
-int compare_film_t_year(film_t *a, film_t *b)
+int compare_film_year(film_t *a, film_t *b)
 {
     return a->year - b->year;
 }
