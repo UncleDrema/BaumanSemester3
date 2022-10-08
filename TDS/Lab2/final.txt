@@ -1,0 +1,272 @@
+Andy
+Optimized Game
+EXMO
+941
+fiction
+0
+Marcus Avrelius
+Unoptimized Life
+Samizdat
+693
+fiction
+0
+M. L. Crass
+Lovely Dog
+EXMO
+447
+tech
+502020
+1
+2019
+M. L. Crass
+Unoptimized Dog
+BMSTU
+240
+fiction
+0
+M. L. Crass
+Pretty Boy
+EXMO
+164
+tech
+502010
+1
+1921
+Marcus Avrelius
+Pretty Dog
+Piastrus
+297
+tech
+502010
+0
+2009
+Andrew
+Optimized Game
+BMSTU
+690
+fiction
+0
+Alexander
+Bad Life
+BMSTU
+320
+child
+0
+Alexander
+Pretty TDS
+RZD
+807
+child
+0
+Alexander
+Unoptimized TDS
+BMSTU
+970
+tech
+252030
+1
+1961
+Alexander
+Good Cat
+Samizdat
+487
+tech
+453010
+0
+1987
+M. L. Crass
+Bad Cat
+Piastrus
+367
+child
+1
+Socratus
+Unoptimized Life
+Clickers
+839
+tech
+252010
+0
+1962
+Socratus
+Unoptimized Game
+RZD
+205
+child
+0
+Billy
+Optimized Girl
+FanZona
+381
+child
+0
+Andy
+Bad Cat
+Clickers
+1007
+child
+0
+M. L. Crass
+Optimized Boy
+RZD
+647
+child
+1
+Alexander
+Optimized War
+EXMO
+367
+tech
+302010
+0
+1933
+M. L. Crass
+Furious TDS
+FanZona
+728
+child
+0
+Andy
+Lovely Life
+EXMO
+723
+child
+0
+Marcus Avrelius
+Pretty Life
+FanZona
+16
+child
+1
+Clint
+Pretty Dog
+Clickers
+216
+child
+1
+Billy
+Bad Boy
+RZD
+99
+fiction
+1
+Andy
+Lovely Game
+EXMO
+718
+fiction
+1
+Alexander
+Optimized TDS
+BMSTU
+741
+tech
+502020
+0
+1922
+Alexander
+Pretty Life
+FanZona
+106
+fiction
+0
+Marcus Avrelius
+Lovely Boy
+RZD
+657
+child
+1
+Marcus Avrelius
+Unoptimized Dog
+EXMO
+786
+fiction
+0
+Clint
+Lovely TDS
+Clickers
+841
+child
+1
+Socratus
+Pretty Girl
+Piastrus
+957
+fiction
+1
+M. L. Crass
+Pretty Game
+EXMO
+84
+tech
+502020
+0
+1903
+Socratus
+Optimized Girl
+Samizdat
+873
+tech
+352020
+0
+1958
+M. L. Crass
+Optimized Life
+EXMO
+913
+fiction
+1
+Billy
+Lovely Girl
+Samizdat
+37
+tech
+302020
+1
+1901
+Clint
+Optimized TDS
+RZD
+542
+fiction
+0
+Marcus Avrelius
+Furious War
+Piastrus
+823
+fiction
+0
+Andrew
+Furious Dog
+FanZona
+557
+fiction
+1
+Socratus
+Good TDS
+FanZona
+323
+child
+1
+Socratus
+Lovely Cat
+EXMO
+794
+fiction
+1
+Socratus
+Lovely Boy
+EXMO
+673
+tech
+252010
+1
+2001
+Lukianenko
+Noname
+Key Altos
+743
+tech
+502010
+0
+2009
