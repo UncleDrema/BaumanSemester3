@@ -6,9 +6,11 @@
 #include <time.h>
 #include <sys/time.h>
 #include <stdio.h>
-#include "../inc/sort.h"
-#include "../inc/err.h"
-#include "../inc/comparators.h"
+#include <sort.h>
+#include <err.h>
+#include <comparators.h>
+#include <old_sort.h>
+
 #define DECL_NAMED_FUNC_T(func_t) typedef struct \
 { \
     char name[16]; \
@@ -63,9 +65,10 @@ int main(int argc, char *argv[])
         {
             named_sort_func qsort_named = { "qsort", qsort };
             named_sort_func mysort_named = { "mysort", mysort };
+            named_sort_func old_mysort_named = { "old_mysort", old_mysort };
             named_value_provider providers[PROVIDER_N] = { { "good", good }, { "bad", bad }, { "average", average } };
 
-            double mysort_time, qsort_time;
+            double mysort_time, qsort_time, old_mysort_time;
 
             puts("[");
             for (size_t iprov = 0; iprov < PROVIDER_N; iprov++)
@@ -75,8 +78,9 @@ int main(int argc, char *argv[])
                     {
                         mysort_time = measure(isize, itimes, mysort_named.func, providers[iprov].func);
                         qsort_time = measure(isize, itimes, qsort_named.func, providers[iprov].func);
+                        old_mysort_time = measure(isize, itimes, old_mysort_named.func, providers[iprov].func);
 
-                        printf("    {\n        \"size\": %zu,\n        \"times\": %zu,\n        \"case\": \"%s\",\n        \"results\":\n        {\n            \"mysort\": %.8f,\n            \"qsort\": %.8f\n        }\n    }", isize, itimes, providers[iprov].name, mysort_time, qsort_time);
+                        printf("    {\n        \"size\": %zu,\n        \"times\": %zu,\n        \"case\": \"%s\",\n        \"results\":\n        {\n            \"mysort\": %.8f,\n            \"qsort\": %.8f,\n            \"old_mysort\": %.8f\n        }\n    }", isize, itimes, providers[iprov].name, mysort_time, qsort_time, old_mysort_time);
 
                         if (times_range.step == 0)
                         {

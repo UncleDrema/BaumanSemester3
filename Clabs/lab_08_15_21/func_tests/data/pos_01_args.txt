@@ -1,0 +1,1 @@
+o func_tests/data/mat1x1.txt func_tests/data/pos_01_fout.txt

@@ -36,6 +36,12 @@ err_t read_int_array(FILE *f, int **pb, int **pe)
     }
 
     *pb = malloc(count * sizeof(int));
+
+    if (*pb == NULL)
+    {
+        return ERR_MEMORY;
+    }
+
     *pe = *pb + count;
 
     int *p;

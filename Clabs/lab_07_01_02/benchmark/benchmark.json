@@ -1,0 +1,1685 @@
+[
+    {
+        "size": 0,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 100,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 200,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 300,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 400,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 500,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 600,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 700,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 800,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 900,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1000,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1100,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1200,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1300,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1400,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 1500,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1600,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1700,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1800,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 1900,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2000,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2100,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2200,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2300,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2400,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2500,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 2600,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 2700,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2800,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 2900,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 3000,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 3100,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 3200,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 3300,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 3400,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 3500,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 3600,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 3700,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 3800,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 3900,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 4000,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 4100,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 4200,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 4300,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.20000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 4400,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.20000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 4500,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 4600,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 4700,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 4800,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 4900,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 5000,
+        "times": 10,
+        "case": "good",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 0,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 100,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 200,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 300,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.30000000
+        }
+    },
+    {
+        "size": 400,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.60000000
+        }
+    },
+    {
+        "size": 500,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.90000000
+        }
+    },
+    {
+        "size": 600,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 1.30000000
+        }
+    },
+    {
+        "size": 700,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 1.80000000
+        }
+    },
+    {
+        "size": 800,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.00000000,
+            "old_mysort": 2.20000000
+        }
+    },
+    {
+        "size": 900,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.00000000,
+            "old_mysort": 3.00000000
+        }
+    },
+    {
+        "size": 1000,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.00000000,
+            "old_mysort": 3.80000000
+        }
+    },
+    {
+        "size": 1100,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.10000000,
+            "old_mysort": 4.90000000
+        }
+    },
+    {
+        "size": 1200,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.10000000,
+            "old_mysort": 5.60000000
+        }
+    },
+    {
+        "size": 1300,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.10000000,
+            "old_mysort": 7.50000000
+        }
+    },
+    {
+        "size": 1400,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.30000000,
+            "qsort": 0.10000000,
+            "old_mysort": 7.10000000
+        }
+    },
+    {
+        "size": 1500,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.30000000,
+            "qsort": 0.00000000,
+            "old_mysort": 7.80000000
+        }
+    },
+    {
+        "size": 1600,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.40000000,
+            "qsort": 0.00000000,
+            "old_mysort": 8.90000000
+        }
+    },
+    {
+        "size": 1700,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.30000000,
+            "qsort": 0.10000000,
+            "old_mysort": 9.90000000
+        }
+    },
+    {
+        "size": 1800,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.50000000,
+            "qsort": 0.00000000,
+            "old_mysort": 11.20000000
+        }
+    },
+    {
+        "size": 1900,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.40000000,
+            "qsort": 0.00000000,
+            "old_mysort": 13.90000000
+        }
+    },
+    {
+        "size": 2000,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.50000000,
+            "qsort": 0.10000000,
+            "old_mysort": 14.50000000
+        }
+    },
+    {
+        "size": 2100,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.00000000,
+            "old_mysort": 15.00000000
+        }
+    },
+    {
+        "size": 2200,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.10000000,
+            "old_mysort": 16.90000000
+        }
+    },
+    {
+        "size": 2300,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.70000000,
+            "qsort": 0.10000000,
+            "old_mysort": 19.20000000
+        }
+    },
+    {
+        "size": 2400,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.80000000,
+            "qsort": 0.10000000,
+            "old_mysort": 19.80000000
+        }
+    },
+    {
+        "size": 2500,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.10000000,
+            "old_mysort": 21.20000000
+        }
+    },
+    {
+        "size": 2600,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.70000000,
+            "qsort": 0.10000000,
+            "old_mysort": 22.70000000
+        }
+    },
+    {
+        "size": 2700,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.80000000,
+            "qsort": 0.00000000,
+            "old_mysort": 24.70000000
+        }
+    },
+    {
+        "size": 2800,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.70000000,
+            "qsort": 0.10000000,
+            "old_mysort": 26.30000000
+        }
+    },
+    {
+        "size": 2900,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.80000000,
+            "qsort": 0.10000000,
+            "old_mysort": 28.90000000
+        }
+    },
+    {
+        "size": 3000,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.80000000,
+            "qsort": 0.10000000,
+            "old_mysort": 30.60000000
+        }
+    },
+    {
+        "size": 3100,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.90000000,
+            "qsort": 0.10000000,
+            "old_mysort": 32.40000000
+        }
+    },
+    {
+        "size": 3200,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 0.90000000,
+            "qsort": 0.10000000,
+            "old_mysort": 34.90000000
+        }
+    },
+    {
+        "size": 3300,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 36.90000000
+        }
+    },
+    {
+        "size": 3400,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 39.10000000
+        }
+    },
+    {
+        "size": 3500,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 41.90000000
+        }
+    },
+    {
+        "size": 3600,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 47.40000000
+        }
+    },
+    {
+        "size": 3700,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.30000000,
+            "qsort": 0.20000000,
+            "old_mysort": 51.90000000
+        }
+    },
+    {
+        "size": 3800,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.20000000,
+            "qsort": 0.20000000,
+            "old_mysort": 52.20000000
+        }
+    },
+    {
+        "size": 3900,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.40000000,
+            "qsort": 0.20000000,
+            "old_mysort": 56.30000000
+        }
+    },
+    {
+        "size": 4000,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.20000000,
+            "qsort": 0.10000000,
+            "old_mysort": 55.80000000
+        }
+    },
+    {
+        "size": 4100,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.40000000,
+            "qsort": 0.10000000,
+            "old_mysort": 58.20000000
+        }
+    },
+    {
+        "size": 4200,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.40000000,
+            "qsort": 0.20000000,
+            "old_mysort": 61.30000000
+        }
+    },
+    {
+        "size": 4300,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.40000000,
+            "qsort": 0.20000000,
+            "old_mysort": 63.90000000
+        }
+    },
+    {
+        "size": 4400,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.50000000,
+            "qsort": 0.10000000,
+            "old_mysort": 67.50000000
+        }
+    },
+    {
+        "size": 4500,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.60000000,
+            "qsort": 0.20000000,
+            "old_mysort": 70.20000000
+        }
+    },
+    {
+        "size": 4600,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.60000000,
+            "qsort": 0.10000000,
+            "old_mysort": 72.60000000
+        }
+    },
+    {
+        "size": 4700,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.70000000,
+            "qsort": 0.10000000,
+            "old_mysort": 75.80000000
+        }
+    },
+    {
+        "size": 4800,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.80000000,
+            "qsort": 0.10000000,
+            "old_mysort": 79.90000000
+        }
+    },
+    {
+        "size": 4900,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.80000000,
+            "qsort": 0.10000000,
+            "old_mysort": 83.10000000
+        }
+    },
+    {
+        "size": 5000,
+        "times": 10,
+        "case": "bad",
+        "results":
+        {
+            "mysort": 1.90000000,
+            "qsort": 0.10000000,
+            "old_mysort": 87.70000000
+        }
+    },
+    {
+        "size": 0,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.00000000
+        }
+    },
+    {
+        "size": 100,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 200,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.10000000
+        }
+    },
+    {
+        "size": 300,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.20000000
+        }
+    },
+    {
+        "size": 400,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.00000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.30000000
+        }
+    },
+    {
+        "size": 500,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.00000000,
+            "old_mysort": 0.70000000
+        }
+    },
+    {
+        "size": 600,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 0.70000000
+        }
+    },
+    {
+        "size": 700,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.10000000,
+            "qsort": 0.10000000,
+            "old_mysort": 1.00000000
+        }
+    },
+    {
+        "size": 800,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.10000000,
+            "old_mysort": 1.30000000
+        }
+    },
+    {
+        "size": 900,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.20000000,
+            "old_mysort": 1.50000000
+        }
+    },
+    {
+        "size": 1000,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.10000000,
+            "old_mysort": 1.90000000
+        }
+    },
+    {
+        "size": 1100,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.20000000,
+            "qsort": 0.20000000,
+            "old_mysort": 2.30000000
+        }
+    },
+    {
+        "size": 1200,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.30000000,
+            "qsort": 0.10000000,
+            "old_mysort": 2.50000000
+        }
+    },
+    {
+        "size": 1300,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.40000000,
+            "qsort": 0.10000000,
+            "old_mysort": 3.10000000
+        }
+    },
+    {
+        "size": 1400,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.30000000,
+            "qsort": 0.20000000,
+            "old_mysort": 3.60000000
+        }
+    },
+    {
+        "size": 1500,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.40000000,
+            "qsort": 0.20000000,
+            "old_mysort": 4.20000000
+        }
+    },
+    {
+        "size": 1600,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.40000000,
+            "qsort": 0.10000000,
+            "old_mysort": 4.80000000
+        }
+    },
+    {
+        "size": 1700,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.50000000,
+            "qsort": 0.10000000,
+            "old_mysort": 5.40000000
+        }
+    },
+    {
+        "size": 1800,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.40000000,
+            "qsort": 0.20000000,
+            "old_mysort": 6.20000000
+        }
+    },
+    {
+        "size": 1900,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.30000000,
+            "old_mysort": 6.50000000
+        }
+    },
+    {
+        "size": 2000,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.20000000,
+            "old_mysort": 7.50000000
+        }
+    },
+    {
+        "size": 2100,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.20000000,
+            "old_mysort": 8.00000000
+        }
+    },
+    {
+        "size": 2200,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.10000000,
+            "old_mysort": 8.90000000
+        }
+    },
+    {
+        "size": 2300,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.70000000,
+            "qsort": 0.20000000,
+            "old_mysort": 9.60000000
+        }
+    },
+    {
+        "size": 2400,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.60000000,
+            "qsort": 0.30000000,
+            "old_mysort": 10.60000000
+        }
+    },
+    {
+        "size": 2500,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.70000000,
+            "qsort": 0.40000000,
+            "old_mysort": 11.20000000
+        }
+    },
+    {
+        "size": 2600,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.90000000,
+            "qsort": 0.30000000,
+            "old_mysort": 12.40000000
+        }
+    },
+    {
+        "size": 2700,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.90000000,
+            "qsort": 0.30000000,
+            "old_mysort": 13.10000000
+        }
+    },
+    {
+        "size": 2800,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.00000000,
+            "qsort": 0.30000000,
+            "old_mysort": 14.40000000
+        }
+    },
+    {
+        "size": 2900,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.70000000,
+            "qsort": 0.40000000,
+            "old_mysort": 15.20000000
+        }
+    },
+    {
+        "size": 3000,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.50000000,
+            "qsort": 0.20000000,
+            "old_mysort": 16.10000000
+        }
+    },
+    {
+        "size": 3100,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 0.90000000,
+            "qsort": 0.30000000,
+            "old_mysort": 17.00000000
+        }
+    },
+    {
+        "size": 3200,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.00000000,
+            "qsort": 0.30000000,
+            "old_mysort": 18.20000000
+        }
+    },
+    {
+        "size": 3300,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.00000000,
+            "qsort": 0.40000000,
+            "old_mysort": 19.90000000
+        }
+    },
+    {
+        "size": 3400,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.00000000,
+            "qsort": 0.30000000,
+            "old_mysort": 20.80000000
+        }
+    },
+    {
+        "size": 3500,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.10000000,
+            "qsort": 0.40000000,
+            "old_mysort": 21.70000000
+        }
+    },
+    {
+        "size": 3600,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.20000000,
+            "qsort": 0.40000000,
+            "old_mysort": 23.30000000
+        }
+    },
+    {
+        "size": 3700,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.30000000,
+            "qsort": 0.00000000,
+            "old_mysort": 24.60000000
+        }
+    },
+    {
+        "size": 3800,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.20000000,
+            "qsort": 0.50000000,
+            "old_mysort": 26.30000000
+        }
+    },
+    {
+        "size": 3900,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.50000000,
+            "qsort": 0.40000000,
+            "old_mysort": 27.20000000
+        }
+    },
+    {
+        "size": 4000,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.30000000,
+            "qsort": 0.50000000,
+            "old_mysort": 28.00000000
+        }
+    },
+    {
+        "size": 4100,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.30000000,
+            "qsort": 0.40000000,
+            "old_mysort": 29.90000000
+        }
+    },
+    {
+        "size": 4200,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.50000000,
+            "qsort": 0.50000000,
+            "old_mysort": 30.90000000
+        }
+    },
+    {
+        "size": 4300,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.50000000,
+            "qsort": 0.50000000,
+            "old_mysort": 32.20000000
+        }
+    },
+    {
+        "size": 4400,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.50000000,
+            "qsort": 0.60000000,
+            "old_mysort": 34.20000000
+        }
+    },
+    {
+        "size": 4500,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.70000000,
+            "qsort": 0.40000000,
+            "old_mysort": 35.30000000
+        }
+    },
+    {
+        "size": 4600,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.60000000,
+            "qsort": 0.50000000,
+            "old_mysort": 37.20000000
+        }
+    },
+    {
+        "size": 4700,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.40000000,
+            "qsort": 0.60000000,
+            "old_mysort": 38.50000000
+        }
+    },
+    {
+        "size": 4800,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.80000000,
+            "qsort": 0.70000000,
+            "old_mysort": 40.10000000
+        }
+    },
+    {
+        "size": 4900,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.80000000,
+            "qsort": 0.40000000,
+            "old_mysort": 43.60000000
+        }
+    },
+    {
+        "size": 5000,
+        "times": 10,
+        "case": "average",
+        "results":
+        {
+            "mysort": 1.90000000,
+            "qsort": 0.60000000,
+            "old_mysort": 48.40000000
+        }
+    }
+]

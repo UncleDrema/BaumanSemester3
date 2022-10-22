@@ -18,20 +18,24 @@ ERR_H := $(INC_DIR)/err.h
 UNIT_FLAGS := -lcheck
 COLLECT := collect_coverage.sh
 CFLAGS := -std=c99 -Wall -Werror -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -I inc
+CC := gcc
 
-$(APP_EXE) : out $(OBJS) $(OUT_DIR)/main.o
+$(APP_EXE) : $(OUT_DIR) $(OBJS) $(OUT_DIR)/main.o
 	$(CC) $(CFLAGS) $(OBJS) $(OUT_DIR)/main.o -o $@
 
-$(UNIT_EXE): out $(OBJS) $(CHECK_OBJS) $(OUT_DIR)/check_main.o
+$(UNIT_EXE): $(OUT_DIR) $(OBJS) $(CHECK_OBJS) $(OUT_DIR)/check_main.o
 	$(CC) $(CFLAGS) $(OBJS) $(CHECK_OBJS) $(OUT_DIR)/check_main.o $(UNIT_FLAGS) -o $@
 
-$(BENCHMARK_EXE): out $(OUT_DIR)/benchmark.o $(OUT_DIR)/sort.o $(OUT_DIR)/comparators.o $(INC_DIR)/err.h
-	$(CC) $(CFLAGS)  $(OUT_DIR)/benchmark.o $(OUT_DIR)/sort.o $(OUT_DIR)/comparators.o -o $@
+$(BENCHMARK_EXE): $(OUT_DIR) $(OUT_DIR)/benchmark.o $(OUT_DIR)/sort.o $(OUT_DIR)/comparators.o $(INC_DIR)/err.h $(OUT_DIR)/old_sort.o
+	$(CC) $(CFLAGS)  $(OUT_DIR)/benchmark.o $(OUT_DIR)/sort.o $(OUT_DIR)/comparators.o $(OUT_DIR)/old_sort.o -o $@
 
 $(OUT_DIR)/main.o: $(SRC_DIR)/main.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUT_DIR)/sort.o: $(SRC_DIR)/sort.c $(INC_DIR)/sort.h $(ERR_H)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUT_DIR)/old_sort.o: $(SRC_DIR)/old_sort.c $(INC_DIR)/old_sort.h $(ERR_H)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUT_DIR)/io.o : $(SRC_DIR)/io.c $(INC_DIR)/io.h $(ERR_H)
@@ -59,9 +63,9 @@ $(OUT_DIR)/check_main.o: $(UNIT_DIR)/check_main.c
 	$(CC) $(CFLAGS) -c $< $(UNIT_FLAGS) -o $@
 
 bench: $(BENCHMARK_EXE)
-	./$(RUN_BENCHMARK) > $(OUT_DIR)/benchmark.json
+	./$(RUN_BENCHMARK) > $(BENCH_DIR)/benchmark.json
 
-out:
+$(OUT_DIR):
 	@mkdir -p $(OUT_DIR)
 
 gcov: CFLAGS += --coverage
@@ -82,7 +86,7 @@ unit: $(UNIT_EXE)
 	./$(UNIT_EXE)
 
 clean:
-	$(RM) -r $(OUT_DIR)
+	$(RM) $(OUT_DIR)/*.*
 	$(RM) *.exe
 
 all: scan unit func coverage clean
@@ -91,4 +95,4 @@ ifndef VERBOSE
 .SILENT:
 endif
 
-.PHONY : clean func scan all unit gcov coverage bench out
+.PHONY : clean func scan all unit gcov coverage bench

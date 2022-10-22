@@ -1,0 +1,1 @@
+m func_tests/data/mat1x1.txt func_tests/data/mat2x2_zero_det.txt func_tests/data/neg_09_fout.txt

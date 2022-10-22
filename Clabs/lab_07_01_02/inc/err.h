@@ -5,14 +5,13 @@
 #ifndef __ERR_H
 #define __ERR_H
 
-typedef enum
-{
-    OK = 0,
-    ERR_NOT_ENOUGH_ARGS = 1,
-    ERR_WRONG_ARGS = 2,
-    ERR_MEMORY = 3,
-    ERR_IO = 4,
-    ERR_DATA = 5
-} err_t;
+#define OK 0
+#define ERR_NOT_ENOUGH_ARGS 1
+#define ERR_WRONG_ARGS 2
+#define ERR_MEMORY 3
+#define ERR_IO 4
+#define ERR_DATA 5
+
+typedef int err_t;
 
 #endif

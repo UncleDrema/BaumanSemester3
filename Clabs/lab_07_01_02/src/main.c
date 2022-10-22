@@ -66,7 +66,10 @@ int main(int argc, char *argv[])
                 }
             }
 
-            SAFE_FREE(pb);
+            if (rc != ERR_MEMORY)
+            {
+                SAFE_FREE(pb);
+            }
             SAFE_FREE(pb_f);
         }
         else

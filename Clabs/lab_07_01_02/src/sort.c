@@ -21,15 +21,19 @@ err_t move_to_pos(void *arr, void *from, void *to, size_t len, size_t size)
     }
 
     char char_buf[size];
-    void *buf = char_buf;
 
-    memcpy(buf, from, size);
+    memcpy(char_buf, from, size);
+
+    /* Optimised part
     char *cur_inner, *prev_inner;
     for (cur_inner = from, prev_inner = cur_inner - size; cur_inner > (char *) to; cur_inner -= size, prev_inner -= size)
     {
         memcpy(cur_inner, prev_inner, size);
     }
-    memcpy(to, buf, size);
+    */
+
+    memmove(((char *) to) + size, to, ((char *) from) - ((char *) to));
+    memcpy(to, char_buf, size);
 
     return OK;
 }
