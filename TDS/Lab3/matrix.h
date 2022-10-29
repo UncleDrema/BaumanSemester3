@@ -1,48 +1,36 @@
 //
-// Created by archdrema on 10/22/22.
+// Created by archdrema on 10/28/22.
 //
 
-#ifndef LAB3_MATRIX_H
-#define LAB3_MATRIX_H
+#ifndef __MATRIX_H
+#define __MATRIX_H
 
 #include <stddef.h>
-#include "err.h"
-#include <stdlib.h>
+#include "errors.h"
 
-/// Структура для хранения матрицы
-typedef struct
-{
-    /// Непосредственно данные в матрице
-    int **data;
-    /// Количество строк
-    size_t rows;
-    /// Количество столбцов
-    size_t cols;
-} matrix_t;
+typedef struct sparse_matrix_t {
+    size_t el_count;
+    size_t rows_count;
+    size_t cols_count;
+    size_t *col_p;
+    size_t *row_i;
+    int *values;
+} sparse_matrix_t ;
 
-/// Структура для хранения разреженной матрицы
-typedef struct {
-    size_t rows;
-    size_t cols;
-    size_t non_null;
-    int *a;
-    size_t *ia;
-    struct ja_struct {
-        size_t n;
-        struct ja_struct *next;
-    } *ja;
-} sparse_matrix_t;
+int **matrix_alloc(size_t n, size_t m);
 
-err_t alloc_matrix(matrix_t *m, size_t rows, size_t cols);
+err_t sparse_matrix_alloc(sparse_matrix_t *mat);
 
-err_t matrix_add(matrix_t *a, matrix_t *b, matrix_t *res);
+err_t matrix_to_sparse(int **data, size_t n, size_t m, size_t el_count, sparse_matrix_t *mat);
 
-err_t alloc_sparse_matrix(sparse_matrix_t *m, size_t rows, size_t cols, size_t elements);
+void free_sparse_matrix(sparse_matrix_t *mat);
 
-err_t sparse_matrix_add(sparse_matrix_t *a, sparse_matrix_t *b, sparse_matrix_t *res);
+void reset_matrix(int **data, size_t n, size_t m);
 
-void free_sparse_matrix(sparse_matrix_t *m);
+err_t matrix_sum(int **a, int **b, int **c, size_t c_n, size_t c_m);
 
-void free_matrix(matrix_t *m);
+err_t sum_sparse_matrix_alloc(sparse_matrix_t *matrix1, sparse_matrix_t *matrix2, sparse_matrix_t *result);
 
-#endif //LAB3_MATRIX_H
+void sparse_matrix_sum(sparse_matrix_t *matrix1, sparse_matrix_t *matrix2, sparse_matrix_t *result);
+
+#endif

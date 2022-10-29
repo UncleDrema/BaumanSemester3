@@ -1,176 +1,215 @@
 //
-// Created by archdrema on 10/22/22.
+// Created by archdrema on 10/28/22.
 //
 
 #include "matrix.h"
 
-err_t alloc_sparse_matrix(sparse_matrix_t *m, size_t rows, size_t cols, size_t elements)
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+#include "errors.h"
+#include "file.h"
+#include "matrix.h"
+
+
+int **matrix_alloc(size_t n, size_t m)
 {
-    if (m == NULL || rows == 0 || cols == 0)
+    int **data = malloc(n * sizeof(int *) + n * m * sizeof(int));
+    if (!data)
     {
-        return DATA_ERR;
+        return NULL;
+    }
+    for (size_t i = 0; i < n; i++)
+    {
+        data[i] = (int *) ((char *)data + n * sizeof(int *) + i * m * sizeof(int));
     }
 
-    m->rows = rows;
-    m->cols = cols;
-    m->non_null = elements;
-    m->a = calloc(elements, sizeof(int));
-    if (m->a == NULL)
+    return data;
+}
+
+err_t sparse_matrix_alloc(sparse_matrix_t *mat)
+{
+    mat->values = calloc(mat->el_count, sizeof(int));
+    if (!mat->values)
     {
-        return MEMORY_ERR;
+        return ERROR_MEMORY;
     }
 
-    m->ia = calloc(elements, sizeof(size_t));
-    if (m->ia == NULL)
+    mat->row_i = calloc(mat->el_count, sizeof(size_t));
+    if (!mat->row_i)
     {
-        return MEMORY_ERR;
+        free(mat->values);
+        return ERROR_MEMORY;
+    }
+
+    mat->col_p = calloc((mat->cols_count + 1), sizeof(size_t));
+    if (!mat->col_p)
+    {
+        free(mat->values);
+        free(mat->row_i);
+        return ERROR_MEMORY;
     }
 
     return OK;
 }
 
-static void free_ja_list(struct ja_struct *list)
+err_t matrix_to_sparse(int **data, size_t n, size_t m, size_t el_count, sparse_matrix_t *mat)
 {
-    if (list == NULL)
+    mat->rows_count = n;
+    mat->cols_count = m;
+    mat->el_count = el_count;
+    err_t rc = sparse_matrix_alloc(mat);
+    if (rc != OK)
     {
-        return;
+        return rc;
     }
 
-    free_ja_list(list->next);
-    free(list);
-}
-
-void free_sparse_matrix(sparse_matrix_t *m)
-{
-    free(m->a);
-    free(m->ia);
-    free_ja_list(m->ja);
-}
-
-err_t sparse_matrix_add(sparse_matrix_t *a, sparse_matrix_t *b, sparse_matrix_t *res)
-{
-    if (a == NULL || b == NULL || res == NULL || a->rows != b->rows || a->cols != b->cols
-        || (a->non_null + b->non_null) < a->non_null
-        || (a->non_null + b->non_null) < b->non_null)
+    size_t values_elems = 0;
+    for (size_t j = 0; j < m; j++)
     {
-        return DATA_ERR;
-    }
-
-    size_t total_els = 0;
-
-    struct ja_struct *a_col = a->ja, *b_col = b->ja;
-
-    alloc_sparse_matrix(res, a->rows, a->cols, a->non_null + b->non_null);
-
-    size_t a_col_n = 0, b_col_n = 0;
-
-    while (a_col != NULL && b_col != NULL)
-    {
-        if (a_col != NULL)
+        mat->col_p[j] = values_elems;
+        for (size_t i = 0; i < n; i++)
         {
-            a_col_n = a_col->n;
-            a_col = a_col->next;
-        }
-
-        if (b_col != NULL)
-        {
-            b_col_n = b_col->n;
-            b_col = b_col->next;
+            if (data[i][j] != 0)
+            {
+                mat->row_i[values_elems] = i;
+                mat->values[values_elems] = data[i][j];
+                values_elems++;
+            }
         }
     }
+    mat->col_p[m] = values_elems;
 
-    return OK;
+    return rc;
 }
 
-err_t matrix_add(matrix_t *a, matrix_t *b, matrix_t *res)
+void free_sparse_matrix(sparse_matrix_t *mat)
 {
-    if (res == NULL || a == NULL || b == NULL || a->rows != b->rows || a->cols != b->cols)
-    {
-        return DATA_ERR;
-    }
+    free(mat->col_p);
+    free(mat->row_i);
+    free(mat->values);
+}
 
-    size_t rows = a->rows, cols = a->cols;
-    err_t err = alloc_matrix(res, rows, cols);
-    if (err != OK)
+void reset_matrix(int **data, size_t n, size_t m)
+{
+    for (size_t i = 0; i < n; i++)
     {
-        return MEMORY_ERR;
-    }
-
-    for (size_t i = 0; i < rows; i++)
-    {
-        for (size_t j = 0; j < cols; j++)
+        for (size_t j = 0; j < m; j++)
         {
-            res->data[i][j] = a->data[i][j] + b->data[i][j];
+            data[i][j] = 0;
+        }
+    }
+}
+
+err_t matrix_sum(int **a, int **b, int **c, size_t c_n, size_t c_m)
+{
+    for (size_t i = 0; i < c_n; i++)
+    {
+        for (size_t j = 0; j < c_m; j++)
+        {
+            c[i][j] = a[i][j] + b[i][j];
         }
     }
 
     return OK;
 }
 
-err_t alloc_matrix(matrix_t *m, size_t rows, size_t cols)
+// Выделить матрицу, подсчитав число ненулевых элементов
+err_t sum_sparse_matrix_alloc(sparse_matrix_t *matrix1, sparse_matrix_t *matrix2, sparse_matrix_t *result)
 {
-    if (m == NULL || rows == 0 || cols == 0)
+    if (matrix1->rows_count != matrix2->rows_count || matrix1->cols_count != matrix2->cols_count)
     {
-        return DATA_ERR;
+        return ERROR_SIZE;
     }
-
-    m->rows = 0;
-    m->cols = 0;
-    m->data = NULL;
-
-    int **data = calloc(rows, sizeof(int *));
-    if (data == NULL)
+    result->rows_count = matrix1->rows_count;
+    result->cols_count = matrix1->cols_count;
+    result->el_count = 0;
+    for (size_t j = 0; j < matrix1->cols_count; j++)
     {
-        return MEMORY_ERR;
-    }
-
-    size_t i = 0;
-    int *temp;
-    err_t err = OK;
-    for (; i < rows && err == OK; i++)
-    {
-        temp = calloc(cols, sizeof(int));
-        if (temp == NULL)
+        size_t row_i1 = matrix1->col_p[j], row_i2 = matrix2->col_p[j];
+        while (row_i1 < matrix1->col_p[j + 1] || row_i2 < matrix2->col_p[j + 1])
         {
-            err = MEMORY_ERR;
-            // cancel i++ and set i to previous, "OK" row
-            i -= 2;
-        }
-        else
-        {
-            data[i] = temp;
+            if (row_i1 >= matrix1->col_p[j + 1])
+            {
+                row_i2++;
+            }
+            else if (row_i2 >= matrix2->col_p[j + 1])
+            {
+                row_i1++;
+            }
+            else
+            {
+                if (matrix1->row_i[row_i1] < matrix2->row_i[row_i2])
+                {
+                    row_i1++;
+                }
+                else if (matrix1->row_i[row_i1] > matrix2->row_i[row_i2])
+                {
+                    row_i2++;
+                }
+                else
+                {
+                    row_i1++;
+                    row_i2++;
+                }
+
+            }
+            result->el_count++;
         }
     }
 
-    // free already allocated memory
-    if (err != OK)
-    {
-        for (; i > 0; i--)
-        {
-            free(data[i]);
-        }
-        free(data);
-    }
-    else
-    {
-        m->rows = rows;
-        m->cols = cols;
-        m->data = data;
-    }
-
-    return err;
+    return sparse_matrix_alloc(result);
 }
 
-void free_matrix(matrix_t *m)
+void sparse_matrix_sum(sparse_matrix_t *matrix1, sparse_matrix_t *matrix2, sparse_matrix_t *result)
 {
-    if (m == NULL || m->rows == 0 || m->cols == 0)
+    size_t el_count = 0;
+    for (size_t j = 0; j < matrix1->cols_count; j++)
     {
-        return;
+        result->col_p[j] = el_count;
+        size_t row_i1 = matrix1->col_p[j], row_i2 = matrix2->col_p[j];
+        while (row_i1 < matrix1->col_p[j + 1] || row_i2 < matrix2->col_p[j + 1])
+        {
+            if (row_i1 >= matrix1->col_p[j + 1])
+            {
+                result->row_i[el_count] = matrix2->row_i[row_i2];
+                result->values[el_count++] += matrix2->values[row_i2];
+                row_i2++;
+            }
+            else if (row_i2 >= matrix2->col_p[j + 1])
+            {
+                result->row_i[el_count] = matrix1->row_i[row_i1];
+                result->values[el_count++] += matrix1->values[row_i1];
+                row_i1++;
+            }
+            else
+            {
+                if (matrix1->row_i[row_i1] < matrix2->row_i[row_i2])
+                {
+                    result->row_i[el_count] = matrix1->row_i[row_i1];
+                    result->values[el_count++] += matrix1->values[row_i1];
+                    row_i1++;
+                }
+                else if (matrix1->row_i[row_i1] > matrix2->row_i[row_i2])
+                {
+                    result->row_i[el_count] = matrix2->row_i[row_i2];
+                    result->values[el_count++] += matrix2->values[row_i2];
+                    row_i2++;
+                }
+                else
+                {
+                    result->row_i[el_count] = matrix2->row_i[row_i2];
+                    result->values[el_count] += matrix2->values[row_i2] + matrix1->values[row_i1];
+                    if (result->values[el_count])
+                    {
+                        el_count++;
+                    }
+                    row_i1++;
+                    row_i2++;
+                }
+            }
+        }
     }
-    for (size_t i = 0; i < m->rows; i++)
-    {
-        free(m->data[i]);
-    }
-    free(m->data);
-    m->data = NULL;
 }
+
