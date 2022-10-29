@@ -7,14 +7,19 @@
 
 #include "matrix.h"
 
+/// Вывести меню
 void menu();
 
+/// Вывести число по центру
 void output_num_center(size_t x, int number);
 
+/// Вывести llu число по центру
 void output_llu_num_center(long long unsigned x, int number);
 
-void output_add_result(long long unsigned csr_time, long long unsigned matrix, sparse_matrix_t *csr);
+/// Вывести результат сложения
+void output_sum_result(long long unsigned csr_time, long long unsigned matrix, sparse_matrix_t *csr);
 
-int input_number(int *x);
+/// Ввести число
+err_t input_number(int *x);
 
 #endif

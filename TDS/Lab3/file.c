@@ -11,6 +11,11 @@ int matrix_read(FILE *f, int **data, size_t nnz, size_t n, size_t m, bool print)
 {
     int x;
     int error_code = OK;
+    if (nnz == 0)
+    {
+        skip_to_nl(f);
+        return error_code;
+    }
     for (size_t i = 0; i < nnz && !error_code; ++i)
     {
         int pos_i, pos_j;

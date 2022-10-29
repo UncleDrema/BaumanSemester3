@@ -191,7 +191,7 @@ err_t do_work(int argc, char **argv)
                                                 //matrix_output(stdout, result, nr, mr);
                                                 free(result);
                                             }
-                                            output_add_result(csr_time, matrix_time, &sum_result);
+                                            output_sum_result(csr_time, matrix_time, &sum_result);
                                         }
                                     }
                                     break;
@@ -231,7 +231,7 @@ err_t do_work(int argc, char **argv)
                                         if (!error_code)
                                         {
                                             size_t nr = n1, mr = m1;
-                                            for (size_t i = 0; i < 1 && !error_code; ++i)
+                                            for (size_t i = 0; i < 1000 && !error_code; ++i)
                                             {
                                                 int **result = matrix_alloc(nr, mr);
                                                 if (!result)
