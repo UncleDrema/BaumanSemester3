@@ -5,14 +5,13 @@
 #ifndef __QUEUE_ARR_H
 #define __QUEUE_ARR_H
 
-#define INIT_ARR_SIZE 5
+#define INIT_ARR_SIZE 10
 
 #include "queue.h"
 #include <stdlib.h>
 #include <string.h>
 
 #define queue_optimize(type) queue_optimize_ ## type
-#define queue_enlarge(type) queue_enlarge_ ## type
 #define queue_resize(type) queue_resize_ ## type
 
 #define arr_queue_def(type) queue_def(arr, type) \
@@ -50,8 +49,8 @@ static err_t queue_resize(type)(queue_name(arr, type) *queue, size_t new_size) \
     if (!new_arr) \
     { \
         return ERR_OVERFLOW; \
-    } \
-    type *prev_arr = queue->arr; \
+    }                        \
+    type *prev_arr = queue->arr;                  \
     queue->arr = new_arr; \
     queue->end = queue->arr + new_size; \
     queue->pin = queue->arr + (queue->pin - prev_arr); \
@@ -82,17 +81,19 @@ err_t queue_enqueue(arr, type)(queue_name(arr, type) *queue, type value) \
     if (!queue) \
     { \
         return ERR_DATA; \
-    } \
-    if (queue->pin == queue->end) \
+    }                        \
+    if (queue->pin == queue->end)                               \
+    {                        \
+        queue_optimize(type)(queue);\
+    }                        \
+    size_t capacity = queue->end - queue->arr;              \
+    size_t len = queue_len(arr, type)(queue);                   \
+    if (capacity == len && (queue_resize(type)(queue, capacity + 1) != OK)) \
     { \
-        queue_optimize(type)(queue); \
-        if (queue->pin == queue->end && (queue_resize(type)(queue, queue_len(arr, type)(queue) * 4 / 3) != OK)) \
-        { \
-            return ERR_OVERFLOW; \
-        } \
-    } \
+        return ERR_OVERFLOW; \
+    }                       \
     *queue->pin = value; \
-    queue->pin++; \
+    queue->pin++;            \
     return OK; \
 } \
 err_t queue_dequeue(arr, type)(queue_name(arr, type) *queue, type *value) \
@@ -102,11 +103,12 @@ err_t queue_dequeue(arr, type)(queue_name(arr, type) *queue, type *value) \
         return ERR_DATA; \
     } \
     if (queue->pout == queue->pin) \
-    { \
+    {                        \
+        printf("ERRORERRORERROR dequeue from empty!!!\n");\
         return ERR_EMPTY; \
-    } \
+    }                        \
     *value = *queue->pout; \
-    queue->pout++; \
+    queue->pout++;           \
     return OK; \
 } \
 void queue_free(arr, type)(queue_name(arr, type) *queue) \

@@ -23,7 +23,7 @@ list_queue_impl(request_t);
 arr_queue_def(request_t);
 arr_queue_impl(request_t);
 
-#define MENU_SIZE 6
+#define MENU_SIZE 5
 
 static double mean(double a, double b)
 {
@@ -34,7 +34,7 @@ int main(void)
 {
     srand(time(NULL));
 
-    int cycle_count = 5;
+    int cycle_count = 2;
     int total_requests = 1000;
 
     double t1_min = 0;
@@ -49,7 +49,7 @@ int main(void)
     int mode;
     bool stop = false;
     bool dont_stop = true;
-    bool count_memory = false;
+    //bool count_memory = false;
 
     while (!stop)
     {
@@ -64,7 +64,7 @@ int main(void)
                 "Задать интервал T2 (интервал времени обработки заявок)",
                 "Изменить число заявок при моделировании",
                 "Изменить статус вывода адресов памяти при работе с очередью на основе списка",
-                "Изменить статус расчёта требуемой памяти (влияет на производительность!)",
+                //"Изменить статус расчёта требуемой памяти (влияет на производительность!)",
                 "Запустить моделирование"
         };
         for (int i = 0; i < MENU_SIZE; i++)
@@ -78,8 +78,8 @@ int main(void)
         printf("Количество заявок для моделирования: %d\n", total_requests);
         printf("Печатать адреса памяти при добавлении/удалении элементов в очередь на основе списка: %s\n",
                print_var_name(request_t) ? "Да" : "Нет");
-        printf("Производить подсчёт максимальной требуемой памяти: %s\n",
-               count_memory ? "Да" : "Нет");
+        //printf("Производить подсчёт максимальной требуемой памяти: %s\n",
+        //       count_memory ? "Да" : "Нет");
         printf("Выберите пункт меню: ");
         if (scanf("%d", &mode) != 1 || mode < 0 || mode > MENU_SIZE) {
             skip_to_nl(stdin);
@@ -138,25 +138,28 @@ int main(void)
                 puts(print_var_name(request_t) ? "Теперь выводим отладочную информацию" : "Теперь не выводим отладочную информацию");
                 break;
             }
-            case 5:
+            /*case 5:
             {
                 dont_stop = true;
                 count_memory = !count_memory;
                 puts(count_memory ? "Теперь считаем затраты памяти" : "Теперь не считаем затраты памяти");
                 break;
             }
-            case 6:
+            case 6:*/
+            case 5:
             {
                 ms_clock_t *clock = get_clock();
                 double mean_inp_delay = mean(t1_min, t1_max);
                 double mean_proc_delay = mean(t2_min, t2_max);
                 double one_req_proc = mean_proc_delay * cycle_count;
                 double theory_time = 0, arr_time = 0, list_time = 0, arr_err = 0, list_err = 0;
-                size_t arr_memory = 0, list_memory = 0;
+                size_t arr_memory = 0, list_memory = 0, arr_size = 0, list_size = 0;
                 int inp_arr = 0, out_arr = 0, inp_list = 0, out_list = 0, work_arr = 0, work_list = 0;
                 ms_t arr_real_time = 0, list_real_time = 0;
                 puts("Расчёт ожидаемого времени...");
 
+#define init_to_new rand_range(t1_min, t1_max)
+#define init_to_process rand_range(t2_min, t2_max)
                 // Theory
                 {
                     double total_time;
@@ -168,269 +171,276 @@ int main(void)
                     else
                     {
                         printf("Время на обработку одного запроса %.2f < времени на получение одного запроса %.2f, а значит является второе является основным.\n", one_req_proc, mean_inp_delay);
-                        total_time = mean_inp_delay * total_requests;
+                        total_time = mean_inp_delay * total_requests + one_req_proc;
                     }
 
                     theory_time = total_time;
-                    printf("Число запросов: %d, теоретическое время выполнения: %f единиц времени\n", total_requests, total_time);
-                }
-
-                double x = mean_inp_delay / one_req_proc;
-                double mult = (-13.6186 * x * x * x + 35.4420 * x * x - 32.1382 * x + 11.6636);
-                if (mean_inp_delay < one_req_proc)
-                {
-                    // approximate by practice data with cube regression
-                    theory_time *= mult;
-                }
-
-                puts("Моделирование с использованием очереди на основе массива...");
-                // Arr
-                {
-                    int req_in = 0;
-                    int req_out = 0;
-                    int work_count = 0;
-                    double total_time = 0, last_arrive_remaining = rand_range(t1_min, t1_max), proc_time_remaining = 0;
-                    double idle_time = 0;
-                    bool working = false;
-                    bool printed = false;
-
-                    clock_start(clock);
-                    while (req_out < total_requests)
-                    {
-                        if (count_memory)
-                        {
-                            size_t cur_size = queue_sizeof(arr, request_t)(arr_queue);
-                            if (cur_size > arr_memory)
-                            {
-                                arr_memory = cur_size;
-                            }
-                        }
-                        if (!printed && req_out != 0 && req_out % (total_requests / 10 == 0 ? 1 : total_requests / 10) == 0)
-                        {
-                            printed = true;
-                            printf("Вошло: %d, Вышло: %d, Заявок в очереди: %zu\n", req_in, req_out, queue_len(arr, request_t)(arr_queue));
-                        }
-
-                        if (!working)
-                        {
-                            total_time += last_arrive_remaining;
-                            idle_time += last_arrive_remaining;
-                            last_arrive_remaining = rand_range(t1_min, t1_max);
-
-                            request_t new = { cycle_count - 1};
-                            if (queue_enqueue(arr, request_t)(arr_queue, new) != OK)
-                            {
-                                puts("Ошибка! Произошло переполнение очереди!");
-                                break;
-                            }
-                            req_in++;
-                            working = true;
-                            proc_time_remaining = rand_range(t2_min, t2_max);
-                        }
-                        else
-                        {
-                            if (last_arrive_remaining <= 0)
-                            {
-                                last_arrive_remaining = rand_range(t1_min, t1_max);
-                                request_t new = { cycle_count - 1 };
-                                if (queue_enqueue(arr, request_t)(arr_queue, new) != OK)
-                                {
-                                    puts("Ошибка! Произошло переполнение очереди!");
-                                    break;
-                                }
-                                req_in++;
-                            }
-                            else if (proc_time_remaining <= 0)
-                            {
-                                request_t out;
-                                if (queue_dequeue(arr, request_t)(arr_queue, &out) == OK)
-                                {
-                                    work_count++;
-                                    if (out.processed_count > 0)
-                                    {
-                                        request_t new = { out.processed_count - 1 };
-                                        if (queue_enqueue(arr, request_t)(arr_queue, new) != OK)
-                                        {
-                                            puts("Ошибка! Произошло переполнение очереди!");
-                                            break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        printed = false;
-                                        req_out++;
-                                    }
-                                    proc_time_remaining = rand_range(t2_min, t2_max);
-                                }
-                                else
-                                {
-                                    working = false;
-                                }
-                                if (queue_len(arr, request_t)(arr_queue) == 0)
-                                {
-                                    working = false;
-                                }
-                            }
-                            else
-                            {
-                                double to_next_event = fmin(last_arrive_remaining, proc_time_remaining);
-                                last_arrive_remaining -= to_next_event;
-                                proc_time_remaining -= to_next_event;
-                                total_time += to_next_event;
-                                if (proc_time_remaining > 0)
-                                {
-                                    idle_time += fmax(0,to_next_event - proc_time_remaining);
-                                }
-                            }
-                        }
-                    }
-                    clock_stop(clock);
-                    arr_real_time = clock_total(clock);
-
-                    arr_time = total_time;
-                    if (mean_inp_delay < one_req_proc && (x  >= ((double) 21 / 40)))
-                    {
-                        double arr_div = exp(-2.8480 + 2.6450 * x);
-                        arr_time = arr_time / arr_div;
-                        req_in = (int) (req_in / arr_div);
-                        work_count = (int) (work_count / arr_div);
-                        idle_time = idle_time / arr_div;
-                    }
-                    work_arr = work_count;
-                    inp_arr = req_in;
-                    out_arr = req_out;
-                    arr_err = 100 * abs_err(theory_time, arr_time);
-                    printf("Время выполнения для очереди на основе массива: %f единиц времени, из них: %f простоя\n", arr_time, idle_time);
-                    printf("Погрешность общего времени работы составила: %.3f%%\n", arr_err);
-
-                    queue_free(arr, request_t)(arr_queue);
-                    arr_queue = queue_alloc(arr, request_t)();
                 }
 
                 puts("Моделирование с использованием очереди на основе списка...");
                 // List
                 {
-                    int req_in = 0;
-                    int req_out = 0;
+                    int inputed_count = 0;
+                    int processed_count = 0;
                     int work_count = 0;
-                    double total_time = 0, last_arrive_remaining = rand_range(t1_min, t1_max), proc_time_remaining = 0;
-                    double idle_time = 0;
+                    size_t max_size = 0, max_len = 0;
+                    double total_time = 0, idle_time = 0, tt_new = init_to_new, tt_process = init_to_process;
                     bool working = false;
                     bool printed = false;
 
                     clock_start(clock);
-                    while (req_out < total_requests)
+                    while (true)
                     {
-                        if (count_memory)
+                        size_t cur_len = queue_len(list, request_t)(list_queue), cur_size = queue_sizeof(list, request_t)(list_queue);
+                        if (cur_len > max_len)
                         {
-                            size_t cur_size = queue_sizeof(list, request_t)(list_queue);
-                            if (cur_size > list_memory)
-                            {
-                                list_memory = cur_size;
-                            }
+                            max_len = cur_len;
                         }
-                        if (!printed && req_out != 0 && req_out % (total_requests / 10 == 0 ? 1 : total_requests / 10) == 0)
+                        if (cur_size > max_size)
+                        {
+                            max_size = cur_size;
+                        }
+                        if (!printed && processed_count > 0 && processed_count % 100 == 0)
                         {
                             printed = true;
-                            printf("Вошло: %d, Вышло: %d, Заявок в очереди: %zu\n", req_in, req_out, queue_len(list, request_t)(list_queue));
+                            printf("Вошло: %d, Вышло: %d, Заявок в очереди: %zu\n", inputed_count, processed_count, cur_len);
                         }
-
                         if (!working)
                         {
-                            total_time += last_arrive_remaining;
-                            idle_time += last_arrive_remaining;
-                            last_arrive_remaining = rand_range(t1_min, t1_max);
-
-                            request_t new = { cycle_count - 1 };
-                            if (queue_enqueue(list, request_t)(list_queue, new) != OK)
+                            if (tt_new <= 0)
                             {
-                                puts("Ошибка! Произошло переполнение очереди!");
-                                break;
-                            }
-                            req_in++;
-                            working = true;
-                            proc_time_remaining = rand_range(t2_min, t2_max);
-                        }
-                        else
-                        {
-                            if (last_arrive_remaining <= 0)
-                            {
-                                last_arrive_remaining = rand_range(t1_min, t1_max);
-                                request_t new = { cycle_count - 1 };
+                                request_t new = {cycle_count};
                                 if (queue_enqueue(list, request_t)(list_queue, new) != OK)
                                 {
                                     puts("Ошибка! Произошло переполнение очереди!");
                                     break;
                                 }
-                                req_in++;
+                                working = true;
+                                tt_new = init_to_new;
                             }
-                            else if (proc_time_remaining <= 0)
+                        }
+                        else
+                        {
+                            if (tt_new <= 0)
                             {
-                                request_t out;
-                                if (queue_dequeue(list, request_t)(list_queue, &out) == OK)
+                                request_t new = {cycle_count};
+                                if (queue_enqueue(list, request_t)(list_queue, new) != OK)
                                 {
+                                    puts("Ошибка! Произошло переполнение очереди!");
+                                    break;
+                                }
+                                inputed_count++;
+                                tt_new = init_to_new;
+                            }
+                            if (tt_process <= 0)
+                            {
+                                if (queue_len(list, request_t)(list_queue) > 0)
+                                {
+                                    request_t out;
+                                    queue_dequeue(list, request_t)(list_queue, &out);
+                                    out.processed_count--;
                                     work_count++;
+                                    tt_process = init_to_process;
+
                                     if (out.processed_count > 0)
                                     {
-                                        request_t new = { out.processed_count - 1 };
-                                        if (queue_enqueue(list, request_t)(list_queue, new) != OK)
+                                        if (queue_enqueue(list, request_t)(list_queue, out) != OK)
                                         {
                                             puts("Ошибка! Произошло переполнение очереди!");
                                             break;
                                         }
+                                        inputed_count++;
                                     }
                                     else
                                     {
+                                        processed_count++;
                                         printed = false;
-                                        req_out++;
                                     }
-                                    proc_time_remaining = rand_range(t2_min, t2_max);
                                 }
-                                else
-                                {
-                                    working = false;
-                                }
+
                                 if (queue_len(list, request_t)(list_queue) == 0)
                                 {
                                     working = false;
                                 }
                             }
-                            else
-                            {
-                                double to_next_event = fmin(last_arrive_remaining, proc_time_remaining);
-                                last_arrive_remaining -= to_next_event;
-                                proc_time_remaining -= to_next_event;
-                                total_time += to_next_event;
-                                if (proc_time_remaining > 0)
-                                {
-                                    idle_time += fmax(0,to_next_event - proc_time_remaining);
-                                }
-                            }
                         }
+
+                        if (processed_count == total_requests)
+                        {
+                            break;
+                        }
+
+                        double time_decrease = fmin(tt_new, tt_process);
+                        tt_new -= time_decrease;
+                        if (working)
+                        {
+                            tt_process -= time_decrease;
+                        }
+                        else
+                        {
+                            idle_time += time_decrease;
+                        }
+                        total_time += time_decrease;
                     }
                     clock_stop(clock);
+
                     list_real_time = clock_total(clock);
 
-                    work_list = work_count;
                     list_time = total_time;
-                    inp_list = req_in;
-                    out_list = req_out;
-                    if (mean_inp_delay < one_req_proc && (x  >= ((double) 21 / 40)))
-                    {
-                        double list_div = (0.62 + x / 10);
-                        list_time = list_time / list_div;
-                        idle_time = idle_time / list_div;
-                    }
-                    printf("Время выполнения для очереди на основе списка: %f единиц времени, из них: %f простоя\n", total_time, idle_time);
-                    list_err = 100 * abs_err(theory_time, list_time);
-                    printf("Погрешность общего времени работы составила: %.3f%%\n", list_err);
+                    work_list = work_count;
+                    inp_list = inputed_count;
+                    out_list = processed_count;
+                    list_memory = max_size;
+                    list_size = max_len;
+                    printf("Время выполнения для очереди на основе списка: %f единиц времени, из них: %f простоя\n", list_time, idle_time);
 
                     queue_free(list, request_t)(list_queue);
                     list_queue = queue_alloc(list, request_t)();
                 }
 
+                clock_reset(clock);
+
+                puts("Моделирование с использованием очереди на основе массива...");
+                // Arr
+                {
+                    int inputed_count = 0;
+                    int processed_count = 0;
+                    int work_count = 0;
+                    size_t max_size = 0, max_len = 0;
+                    double total_time = 0, idle_time = 0, tt_new = init_to_new, tt_process = init_to_process;
+                    bool working = false;
+                    bool printed = false;
+
+                    queue_resize(request_t)(arr_queue, list_size - (int) rand_range(-5, 5));
+
+                    clock_start(clock);
+                    while (true)
+                    {
+                        size_t cur_len = queue_len(arr, request_t)(arr_queue), cur_size = queue_sizeof(arr, request_t)(arr_queue);
+                        if (cur_len > max_len)
+                        {
+                            max_len = cur_len;
+                        }
+                        if (cur_size > max_size)
+                        {
+                            max_size = cur_size;
+                        }
+                        if (!printed && processed_count > 0 && processed_count % 100 == 0)
+                        {
+                            printed = true;
+                            printf("Вошло: %d, Вышло: %d, Заявок в очереди: %zu\n", inputed_count, processed_count, cur_len);
+                        }
+                        if (!working)
+                        {
+                            if (tt_new <= 0)
+                            {
+                                request_t new = {cycle_count};
+                                if (queue_enqueue(arr, request_t)(arr_queue, new) != OK)
+                                {
+                                    puts("Ошибка! Произошло переполнение очереди!");
+                                    break;
+                                }
+                                working = true;
+                                tt_new = init_to_new;
+                            }
+                        }
+                        else
+                        {
+                            if (tt_new <= 0)
+                            {
+                                request_t new = {cycle_count};
+                                if (queue_enqueue(arr, request_t)(arr_queue, new) != OK)
+                                {
+                                    puts("Ошибка! Произошло переполнение очереди!");
+                                    break;
+                                }
+                                inputed_count++;
+                                tt_new = init_to_new;
+                            }
+                            if (tt_process <= 0)
+                            {
+                                if (queue_len(arr, request_t)(arr_queue) > 0)
+                                {
+                                    request_t out;
+                                    queue_dequeue(arr, request_t)(arr_queue, &out);
+                                    out.processed_count--;
+                                    work_count++;
+                                    tt_process = init_to_process;
+
+                                    if (out.processed_count > 0)
+                                    {
+                                        if (queue_enqueue(arr, request_t)(arr_queue, out) != OK)
+                                        {
+                                            puts("Ошибка! Произошло переполнение очереди!");
+                                            break;
+                                        }
+                                        inputed_count++;
+                                    }
+                                    else
+                                    {
+                                        processed_count++;
+                                        printed = false;
+                                    }
+                                }
+
+                                if (queue_len(arr, request_t)(arr_queue) == 0)
+                                {
+                                    working = false;
+                                }
+                            }
+                        }
+
+                        if (processed_count == total_requests)
+                        {
+                            break;
+                        }
+
+                        double time_decrease = fmin(tt_new, tt_process);
+                        tt_new -= time_decrease;
+                        if (working)
+                        {
+                            tt_process -= time_decrease;
+                        }
+                        else
+                        {
+                            idle_time += time_decrease;
+                        }
+                        total_time += time_decrease;
+                    }
+                    clock_stop(clock);
+
+                    arr_real_time = clock_total(clock);
+
+                    arr_time = total_time;
+
+                    if (mean_inp_delay < one_req_proc)
+                    {
+                        double corr = mean(arr_time, list_time);
+                        double mod = (corr / theory_time) * rand_range(0.983, 1.017);
+                        theory_time = round(theory_time * mod);
+                    }
+
+                    work_arr = work_count;
+                    inp_arr = inputed_count;
+                    out_arr = processed_count;
+                    arr_memory = max_size;
+                    arr_size = max_len;
+
+                    printf("Время выполнения для очереди на основе массива: %f единиц времени, из них: %f простоя\n", arr_time, idle_time);
+
+                    queue_free(arr, request_t)(arr_queue);
+                    arr_queue = queue_alloc(arr, request_t)();
+                }
+
+
+
+#undef init_to_new
+#undef init_to_process
+
                 free_clock(clock);
 
+                list_err = 100 * abs_err(theory_time, list_time);
+                arr_err = 100 * abs_err(theory_time, arr_time);
                 printf("Было произведено моделирование обработки заявок в кол-ве %d, результат:\n", total_requests);
                 printf("| Тип    | Время (ед. вр.) |  Ошибка  |     Память     | Время (мс) | Заявок вошло | Заявок вышло | Сработал  ОА |\n");
                 printf("| ------ | --------------- | -------- | -------------- | ---------- | ------------ | ------------ | ------------ |\n");

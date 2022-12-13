@@ -131,7 +131,7 @@ size_t queue_sizeof(list, type)(queue_name(list, type) *queue) \
     { \
         return 0; \
     } \
-    return queue_len(list, type)(queue) * sizeof(node_name(type)) + 2 * sizeof(node_name(type)*); \
+    return (queue_len(list, type)(queue) * (sizeof(node_name(type)*) + sizeof(type))) + 2 * sizeof(node_name(type)*); \
 }
 
 #endif
